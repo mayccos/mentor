@@ -12,4 +12,4 @@ export const SUBJECTS = [
     id: 3,
     name: 'mathématiques',
   },
-]
+];
