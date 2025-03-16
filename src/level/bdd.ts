@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 export const LEVELS = [
   {
     id: 1,
@@ -12,4 +11,4 @@ export const LEVELS = [
     id: 3,
     name: 'lycée',
   },
-];
+]

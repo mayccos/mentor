@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 export const SUBJECTS = [
   {
     id: 1,
@@ -15,4 +14,4 @@ export const SUBJECTS = [
     name: 'mathématiques',
     levelId: 1,
   },
-];
+]

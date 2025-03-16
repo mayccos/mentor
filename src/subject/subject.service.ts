@@ -1,20 +1,41 @@
-/* eslint-disable prettier/prettier */
-import { Injectable } from '@nestjs/common'
-import { SUBJECTS } from './bdd'
+import { Inject, Injectable } from '@nestjs/common'
+import { BddService } from 'src/bdd/bdd.service'
+import { TOKEN_LEVELS } from 'src/bdd/constante'
+import { ConfigService } from 'src/config/config.service'
+import { LevelInterface, LevelSubjectInterface } from 'src/level/level'
 import { InterfacePostSubject, InterfaceSubject } from './subject'
 
 @Injectable()
 export class SubjectService {
+  constructor(
+    private bdd: BddService,
+    @Inject(TOKEN_LEVELS) private bddLevels: LevelInterface[],
+    private configService: ConfigService,
+  ) {}
   findAll(): InterfaceSubject[] {
-    return SUBJECTS
+    return this.bdd.get<InterfaceSubject>('subjects')
   }
-  findOneById(id: number): InterfaceSubject | undefined {
-    const subject = SUBJECTS.find((s) => s.id === id)
-    return subject
+
+  findOneById(id: number): InterfaceSubject {
+    return this.bdd.getById<InterfaceSubject>('subjects', id)
   }
+
   createNewSubject({ name }: InterfacePostSubject): InterfaceSubject[] {
-    const sortedByIdSubject = SUBJECTS.sort((a, b) => a.id - b.id)
+    const sortedByIdSubject = this.findAll().sort((a, b) => a.id - b.id)
     const newId = sortedByIdSubject[sortedByIdSubject.length - 1].id + 1
-    return [...SUBJECTS, { id: newId, name, levelId: 1 }]
+    return [...this.findAll(), { id: newId, name, levelId: 1 }]
+  }
+
+  levelAndSubjectFromName(name: string): LevelSubjectInterface[] {
+    const subject = this.findAll().find((s) => s.name === name)
+    const levels = this.bddLevels
+    const filteredLevel = levels.filter((l) => l.id === subject?.levelId)
+    return filteredLevel.map((level) => ({
+      level,
+      subject,
+    }))
+  }
+  findFavorite(): string {
+    return this.configService.get('FAVORITE_SUBJECT')
   }
 }
