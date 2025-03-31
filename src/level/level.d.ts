@@ -3,6 +3,6 @@ export type LevelInterface = {
   name: string
 }
 export type LevelSubjectInterface = {
-  level: LevelInterface | undefined
+  level: LevelInterface | null
   subject: InterfaceSubject
 }
