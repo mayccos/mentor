@@ -23,12 +23,12 @@ export class LevelService {
     })
     return {
       subject: {
-        id: level.subject.id,
-        name: level.subject.name,
+        id: level?.subject?.id,
+        name: level?.subject?.name,
       },
       level: {
-        id: level.id,
-        name: level.name,
+        id: level?.id,
+        name: level?.name,
       },
     }
   }

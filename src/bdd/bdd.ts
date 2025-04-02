@@ -1,3 +1,6 @@
+import { InterfaceSubject } from 'src/subject/subject'
+import { LevelInterface } from './../level/level.d'
+
 export const LEVELS = [
   {
     id: 1,
@@ -30,6 +33,8 @@ export const SUBJECTS = [
     levelId: 3,
   },
 ]
+export type DatabaseKey = 'levels' | 'subjects'
+export type DatabaseRecord = LevelInterface | InterfaceSubject
 
 export default {
   subjects: SUBJECTS,

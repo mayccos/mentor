@@ -35,12 +35,12 @@ export class SubjectService {
     const subject = await this.subjectRepository.findOneBy({ name })
     return {
       subject: {
-        id: subject.id,
-        name: subject.name,
+        id: subject?.id,
+        name: subject?.name,
       },
       level: {
-        id: subject.level.id,
-        name: subject.level.name,
+        id: subject?.level?.id,
+        name: subject?.level?.name,
       },
     }
   }

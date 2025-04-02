@@ -1,8 +1,8 @@
 export type LevelInterface = {
-  id: number
-  name: string
-}
+  id: number | undefined
+  name: string | undefined
+} | null
 export type LevelSubjectInterface = {
-  level: LevelInterface | null
+  level: LevelInterface
   subject: InterfaceSubject
-}
+} | null

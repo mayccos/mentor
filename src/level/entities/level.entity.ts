@@ -5,10 +5,9 @@ import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm'
 export class LevelEntity {
   @PrimaryGeneratedColumn()
   id: number
-
   @Column()
   name: string
 
   @OneToOne(() => SubjectEntity, (subject) => subject.level)
-  subject: SubjectEntity
+  subject?: SubjectEntity
 }

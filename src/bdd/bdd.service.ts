@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common'
-import bdd from './bdd'
+import bdd, { DatabaseKey } from './bdd'
 
 @Injectable()
 export class BddService {
-  get<Entity>(key: string): Entity[] {
-    return bdd[key]
+  get<T>(key: DatabaseKey): T[] {
+    return bdd[key] as T[]
   }
-  getById<Entity>(key: string, id: number): Entity {
-    return bdd[key].find((entity) => entity.id === id)
+  getById<T>(key: DatabaseKey, id: number): T {
+    return bdd[key].find((entity) => entity.id === id) as T
   }
 }
